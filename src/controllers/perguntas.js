@@ -13,7 +13,7 @@ module.exports =
     
     async store(req, res)
     {
-        const{titulo, descricao, imagem, gist } = req.body;
+        const{titulo, descricao, imagem, gist, categorias } = req.body;
 
         const alunoId = req.headers.authorization;
 
@@ -31,6 +31,8 @@ module.exports =
 
             // CRIO A PERGUNTA PARA O ALUNO
             let pergunta = await aluno.createQuestion({titulo, descricao, imagem, gist });
+
+            await pergunta.addCategories(categorias);
 
             // RETORNO DE SUCESSO
 
