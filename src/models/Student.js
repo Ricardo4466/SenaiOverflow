@@ -22,8 +22,10 @@ class Student extends Model
         )
     }
     // AQUI CONFIGURAMOS OS RELACIONAMENTOS
-    static associate(models){
+    static associate(models)
+    {
         this.hasMany(models.Question, {foreignKey: "aluno_id"});
+        this.hasMany(models.Answer, {foreignKey: "student_id"});
     }
 }
 

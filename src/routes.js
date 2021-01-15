@@ -4,6 +4,7 @@ const routes = express.Router();
 
 const alunoController =  require("./controllers/alunos");
 const perguntaController =  require("./controllers/perguntas");
+const answersController = require("./controllers/answers");
 
 
 // CONFIGURAÇÃO DA ROTA DE ALUNOS
@@ -19,5 +20,11 @@ routes.post("/perguntas", perguntaController.store);
 routes.get("/perguntas/:id", perguntaController.index);
 routes.put("/perguntas/:id", perguntaController.update);
 routes.delete("/perguntas/:id", perguntaController.delete);
+
+// CONFIGURAÇÃO DA ROTA DE RESPOSTAS
+routes.post("/perguntas/:id/respostas", answersController.store);
+
+
+
 
 module.exports = routes;

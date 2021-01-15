@@ -26,6 +26,7 @@ class Question extends Model
     {
         this.belongsTo(models.Student, {foreignKey: "aluno_id"});
         this.belongsToMany(models.Category, {through: "question_categories"});
+        this.hasMany(models.Answer);
     }
 }
 
