@@ -17,9 +17,11 @@ module.exports = {
         allowNull: false,
         references:
         {
-          model:"perguntas",
+          model:"questions",
           key:"id"
-        }
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
       },
       student_id:
       {
@@ -27,9 +29,11 @@ module.exports = {
         allowNull: false,
         references:
         {
-          model:"alunos",
+          model:"students",
           key:"id"
-        }
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
       },
       answer:
       {

@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     // AQUI DIZEMOS O QUE DEVE SER FEITO
-   queryInterface.createTable("alunos",{
+   queryInterface.createTable("students",{
     id:{
       type:Sequelize.INTEGER,
       primaryKey:true,
@@ -14,7 +14,7 @@ module.exports = {
       allowNull: false,
       unique: true
     },
-    nome:{
+    name:{
       type:Sequelize.STRING,
       allowNull: false,
       
@@ -23,7 +23,7 @@ module.exports = {
       type:Sequelize.STRING,
       allowNull: false,
     },
-    senha:{
+    password:{
       type:Sequelize.STRING,
       allowNull: false,
     },
@@ -41,6 +41,6 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // AQUI DIZEMOS O QUE DEVE SER DESFEITO
-    queryInterface.dropTable("alunos");
+    queryInterface.dropTable("students");
   }
 };

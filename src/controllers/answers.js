@@ -16,23 +16,23 @@ module.exports =
 
         try 
         {
-            const aluno = await Student.findByPk(studentId);
-            console.log(aluno)
-            const pergunta = await Question.findByPk(questionId);
+            const student = await Student.findByPk(studentId);
+            console.log(student)
+            const question = await Question.findByPk(questionId);
 
 
-            if(!aluno)
-                return res.status(404).send({erro:"Aluno não encontrado"});
-            if(!pergunta)
-                return res.status(404).send({erro:"Pergunta Não encontrada"});
+            if(!student)
+                return res.status(404).send({error:"Aluno não encontrado"});
+            if(!question)
+                return res.status(404).send({error:"Pergunta Não encontrada"});
             
-            const resposta = await pergunta.createAnswer({answer, student_id: studentId});
+            const anwer = await question.createAnswer({answer, student_id: studentId});
 
 
 
            
 
-            res.status(201).send(resposta);
+            res.status(201).send(anwer);
 
         } 
         catch (error) 

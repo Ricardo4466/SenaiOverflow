@@ -1,13 +1,14 @@
 const Student = require("../models/Student");
+
 module.exports = {
 
     // FUNCÃO QUE VAI SE EXECUTADA PELA ROTA
-    async listarAlunos(req, res){
+    async index(req, res){
         
         try {
-            const alunos = await Student.findAll(); 
+            const student = await Student.findAll(); 
 
-            res.send(alunos);
+            res.send(student);
 
         } catch (error) {
 
@@ -20,32 +21,32 @@ module.exports = {
       
     },
 
-    async buscarAluno(req, res){
+    async find(req, res){
         // recuperar o id do aluno
-        const alunoId = req.params.id;
+        const studentId = req.params.id;
      try {
-         let aluno = await Student.findByPk(alunoId, {
-            attributes:["ra", "nome", "email", ]
+         let student = await Student.findByPk(studentId, {
+            attributes:["id", "ra", "name", "email", ]
         
         });
-            if(!aluno)
+            if(!student)
                 return res.status(404).send({erro:" aluno não encontrado"});
-        res.send(aluno);
+        res.send(student);
 
      } catch (error) {
         console.log(error);
-        res.status(404).send({error});
+        res.status(500).send({error});
      }
      
 
     },
      
-    async adicionarAlunos(req, res){
+    async store(req, res){
          
          //receber os dados no body
-         const{ra, nome, email, senha} = req.body;
+         const{ra, name, email, password} = req.body;
         try {
-            let aluno = await Student.findOne
+            let student = await Student.findOne
             ({
                 where:
                 {
@@ -53,15 +54,15 @@ module.exports = {
                 }
             });
 
-            if(aluno)
-                return res.status(400).send({erro:" 'Ra ja cadastrado'!"});
+            if(student)
+                return res.status(400).send({error:" Ra ja cadastrado!"});
 
-            aluno = await Student.create({ra, nome, email, senha});
-            res.status(201).send(aluno);
+            student = await Student.create({ra, name, email, password});
+            res.status(201).send(student);
 
         } catch (error) {
            console.log(error);
-           res.status(404).send(error);
+           res.status(500).send(error);
            
         }
         
@@ -75,27 +76,27 @@ module.exports = {
         //  alunos.push({id:nextid, RA, nome, email, senha});
      
          //retorna resposta de sucesso
-         res.status(201).send({id: aluno.id});
+         res.status(201).send({id: student.id});
     },
      
-    async deletarAluno(req, res){
+    async delete(req, res){
          // Recuperar o id do aluno a ser deletado
      
-         const alunoId = req.params.id;
+         const studentId = req.params.id;
 
          try {
              
-            let aluno = await Student.findByPk(alunoId);
+            let student = await Student.findByPk(studentId);
 
-            if(!aluno)
-                return res.status(404).send({erro:"aluno não encontrado"})
+            if(!student)
+                return res.status(404).send({error:"aluno não encontrado"})
 
-            await aluno.destroy();
+            await student.destroy();
 
             res.status(204).send()
          } catch (error) {
             console.log(error);
-            res.status(404).send(error);
+            res.status(500).send(error);
          }
      
          // retirar esse aluno da lista
@@ -106,28 +107,28 @@ module.exports = {
         //  res.status(204).send();
     },
      
-    async editarAluno(req, res){
+    async update(req, res){
          // Recuperar o id do aluno a ser deletado
-         const alunoId = req.params.id;
+         const studentId = req.params.id;
      
          //Recuperar os dados do corpo
-         const{nome, email} = req.body
+         const{name, email} = req.body
      
         try {
             
-            let aluno = await Student.findByPk(alunoId);
+            let student = await Student.findByPk(studentId);
 
-            if(!aluno)
-                res.status(404).send({erro:"Student não encontrado"});
+            if(!student)
+                res.status(404).send({error:"Student não encontrado"});
 
-            aluno.nome = nome,
-            aluno.email = email
+            student.name = name,
+            student.email = email
 
-            aluno.save();
+            student.save();
             res.status(204).send()
         } catch (error) {
             console.log(error);
-            res.status(404).send(error);
+            res.status(500).send(error);
         }
     }
 }

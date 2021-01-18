@@ -9,23 +9,21 @@ class Student extends Model
         (
             {
                 ra: DataTypes.STRING,
-                nome:DataTypes.STRING,
+                name:DataTypes.STRING,
                 email:DataTypes.STRING,
-                senha:DataTypes.STRING
+                password:DataTypes.STRING
             },
 
             {
-                
                 sequelize,
-                tableName: "alunos"
             }
         )
     }
     // AQUI CONFIGURAMOS OS RELACIONAMENTOS
     static associate(models)
     {
-        this.hasMany(models.Question, {foreignKey: "aluno_id"});
-        this.hasMany(models.Answer, {foreignKey: "student_id"});
+        this.hasMany(models.Question);
+        this.hasMany(models.Answer);
     }
 }
 

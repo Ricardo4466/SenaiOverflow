@@ -8,19 +8,19 @@ const Category = require("../models/Category");
 const Answer = require("../models/Answer");
 
 
-const conexao = new Sequelize(dbConfig);
+const connection = new Sequelize(dbConfig);
 
 // INICIALIZA OS MODELS
-Student.init(conexao);
-Question.init(conexao);
-Category.init(conexao);
-Answer.init(conexao);
+Student.init(connection);
+Question.init(connection);
+Category.init(connection);
+Answer.init(connection);
 
 // INICIALIZA OS RELACIONAMENTOS
-Student.associate(conexao.models);
-Question.associate(conexao.models);
-Category.associate(conexao.models);
-Answer.associate(conexao.models);
+Student.associate(connection.models);
+Question.associate(connection.models);
+Category.associate(connection.models);
+Answer.associate(connection.models);
 
 // for (let assoc of Object.keys(Question.associations)) {
 //     for (let accessor of Object.keys(Question.associations[assoc].accessors)) {

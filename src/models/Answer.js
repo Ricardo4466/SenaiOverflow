@@ -20,7 +20,7 @@ class Answer extends Model
     static associate(models)
     {
         this.belongsTo(models.Question);
-        this.belongsTo(models.Student, {foreignKey:"student_id"})
+        this.belongsTo(models.Student)
     }
 }
 

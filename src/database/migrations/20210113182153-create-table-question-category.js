@@ -11,9 +11,11 @@ module.exports = {
         allowNull: false,
         references:
         {
-          model:"perguntas",
+          model:"questions",
           key:"id"
-        }
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
       },
       category_id:
       {
@@ -23,7 +25,9 @@ module.exports = {
         {
           model:"categories",
           key:"id"
-        }
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
       },
       created_at:
       {
