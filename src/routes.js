@@ -1,16 +1,27 @@
 const express = require("express");
 
-const routes = express.Router();
+
+const authMiddleware = require("./middleware/authorization");
 
 const feedController = require("./controllers/feed");
 const answersController = require("./controllers/answers");
 const studentController =  require("./controllers/students");
 const questionController =  require("./controllers/questions");
+const sessionController =  require("./controllers/sessions");
+
+
+const routes = express.Router();
+
+// rotas rotAS PUBLICAS
+routes.post("/sessions", sessionController.store);
+routes.post("/students", studentController.store);
+
+// middleware
+routes.use(authMiddleware);
 
 
 // CONFIGURAÇÃO DA ROTA DE ALUNOS
 routes.get("/students", studentController.index);
-routes.post("/students", studentController.store);
 routes.get("/students/:id", studentController.find);
 routes.put("/students/:id", studentController.update);
 routes.delete("/students/:id", studentController.delete);

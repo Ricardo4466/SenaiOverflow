@@ -23,7 +23,7 @@ module.exports =
     {
         const{title, description, image, gist, categories } = req.body;
 
-        const studentId = req.headers.authorization;
+        const {studentId} = req;
 
 
         try 
@@ -82,7 +82,7 @@ module.exports =
 
         const questionId = req.params.id;
 
-        const studentId = req.headers.authorization
+        const {studentId} = req;
 
         try 
         {
@@ -116,7 +116,7 @@ module.exports =
     {
         const questionId = req.params.id;
 
-        const studentId = req.headers.authorization;
+        const {studentId} = req;
 
         try 
         {

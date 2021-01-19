@@ -10,9 +10,9 @@ module.exports =
 
     async store(req, res)
     {
-        const answer = req.body.answer
         const questionId = req.params.id;
-        const studentId  = req.headers.authorization;
+        const {studentId}  = req;
+        const {answer} = req.body;
 
         try 
         {

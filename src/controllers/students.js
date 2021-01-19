@@ -1,4 +1,7 @@
 const Student = require("../models/Student");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const auth = require("../config/auth.json");
 
 module.exports = {
 
@@ -57,8 +60,25 @@ module.exports = {
             if(student)
                 return res.status(400).send({error:" Ra ja cadastrado!"});
 
-            student = await Student.create({ra, name, email, password});
-            res.status(201).send(student);
+            const passwordCript = bcrypt.hashSync(password);
+
+            student = await Student.create({ra, name, email, password: passwordCript});
+
+            const token = jwt.sign({studentId: student.id, studentName: student.name}, auth.secret);
+
+            
+            res.status(201).send
+            ({
+                student:
+                {
+                    studentId: student.id,
+                    studentName: student.name,
+                    ra: student.ra,
+                    email: student.email
+                },
+                token
+            })
+
 
         } catch (error) {
            console.log(error);
