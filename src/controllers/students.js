@@ -96,7 +96,7 @@ module.exports = {
         //  alunos.push({id:nextid, RA, nome, email, senha});
      
          //retorna resposta de sucesso
-         res.status(201).send({id: student.id});
+        //  res.status(201).send({id: student.id});
     },
      
     async delete(req, res){
