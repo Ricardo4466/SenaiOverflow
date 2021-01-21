@@ -1,3 +1,5 @@
 /node_modules
 
-/config/auth.jon
+/config/auth.json
+/config/firebase.json
+/uploads
