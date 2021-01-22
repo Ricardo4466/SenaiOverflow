@@ -1,5 +1,5 @@
 /node_modules
 
-/src/config/auth.json
-/src/config/firebase-keyjson
+config/auth.json
+config/firebase-key.jon
 /uploads
