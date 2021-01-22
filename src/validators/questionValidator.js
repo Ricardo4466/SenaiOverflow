@@ -17,7 +17,7 @@ module.exports =
                         .min(5)
                         .max(255),
 
-                    categories: Joi.array()
+                    categories: Joi.string()
                         .required(),
 
 

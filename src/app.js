@@ -14,6 +14,8 @@ const app = express();
 
 app.use(express.json());
 
+// DEFINIMOS A PASTA UPLOADS COMO PÚBLICA, SERVINDO ARQUIVOS ESTÁTICOS
+app.use("/uploads",express.static("uploads"));
 
 app.use(routes);
 
