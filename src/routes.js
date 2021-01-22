@@ -1,12 +1,13 @@
 const express = require("express");
+const Multer = require("multer")
 
-
+const multer = Multer()
 const answerValidator = require("./validators/answerValidator");
 const studentValidator = require("./validators/studentValidator");
 const questionValidator = require("./validators/questionValidator");
 
 const authMiddleware = require("./middleware/authorization");
-const uploadQuestions = require("./middleware/uploadQuestions")
+const uploadQuestions = require("./services/firebase")
 
 const feedController = require("./controllers/feed");
 const answersController = require("./controllers/answers");
@@ -53,7 +54,7 @@ routes.get("/questions", questionController.index);
 routes.get("/questions/:id", questionController.find);
 routes.put("/questions/:id", questionController.update);
 routes.delete("/questions/:id", questionController.delete);
-routes.post("/questions", uploadQuestions, questionValidator.create, questionController.store);
+routes.post("/questions",multer.single("image"), uploadQuestions, questionValidator.create, questionController.store);
 
 // CONFIGURAÇÃO DA ROTA DE RESPOSTAS
 routes.post("/questions/:id/anwers", answerValidator.create, answersController.store);

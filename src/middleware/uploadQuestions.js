@@ -2,7 +2,7 @@ const Multer = require("multer");
 
 const uploadQuestions = Multer
 ({
-    storage: Multer.diskStorage
+    storage: Multer.memoryStorage
     ({
 
         destination: "uploads/",
