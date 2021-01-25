@@ -31,9 +31,11 @@ const bucket = admin.storage().bucket();
         }
     });
     
-    stream.on("error", (e) =>
+    stream.on("error", (error) =>
     {
-        console.log(e);
+        console.error(error);
+
+
         
     });
 
@@ -41,6 +43,8 @@ const bucket = admin.storage().bucket();
     {
         // TORNA O ARQUIVO PUBLICO
         await file.makePublic()
+
+   
 
         // OBETER A URL PUBLICA
         req.file.firebaseUrl = `https://storage.googleapis.com/${BUCKET}/${filename}`

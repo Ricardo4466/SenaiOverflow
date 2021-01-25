@@ -53,10 +53,8 @@ module.exports = {
         password: passwordCript,
       });
 
-      const token = jwt.sign(
-        { studentId: student.id, studentName: student.name },
-        auth.secret
-      );
+      const token = generateToken({studentId: student.id, studentName: student.name});
+
 
       res.status(201).send({
         student: {
