@@ -57,7 +57,7 @@ routes.delete("/questions/:id", questionController.delete);
 routes.post("/questions",multer.single("image"), uploadQuestions, questionValidator.create, questionController.store);
 
 // CONFIGURAÇÃO DA ROTA DE RESPOSTAS
-routes.post("/questions/:id/anwers", answerValidator.create, answersController.store);
+routes.post("/questions/:id/answers", answerValidator.create, answersController.store);
 
 // CONFIGURAÇÃO DA ROTA DO FEED
 routes.get("/feed", feedController.index);
