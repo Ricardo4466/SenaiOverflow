@@ -1,7 +1,8 @@
 const Student = require("../models/Student");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const auth = require("../config/auth.json");
+// const jwt = require("jsonwebtoken");
+// const auth = require("../config/auth.json");
+const { generateToken } = require("../utils");
 
 module.exports = {
   // FUNCÃO QUE VAI SE EXECUTADA PELA ROTA
