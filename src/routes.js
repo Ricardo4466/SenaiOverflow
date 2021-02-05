@@ -13,7 +13,8 @@ const feedController = require("./controllers/feed");
 const answersController = require("./controllers/answers");
 const studentController = require("./controllers/students");
 const sessionController = require("./controllers/sessions");
-const questionController = require("./controllers/questions")
+const questionController = require("./controllers/questions");
+const categoriesController = require("./controllers/categories");
 
 const routes = express.Router();
 
@@ -61,5 +62,9 @@ routes.post("/questions/:id/answers", answerValidator.create, answersController.
 
 // CONFIGURAÇÃO DA ROTA DO FEED
 routes.get("/feed", feedController.index);
+
+// ROTAS DE CATEGORIAS
+
+routes.get("/categories", categoriesController.index);
 
 module.exports = routes;
