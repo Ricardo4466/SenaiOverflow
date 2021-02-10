@@ -22,7 +22,7 @@ module.exports=
                 [
                     {
                         association: "Student",
-                        attributes: ["id", "name"]
+                        attributes: ["id", "name", "image"]
                     },
                     {
                         association: "Answers",
@@ -30,7 +30,7 @@ module.exports=
                         include:
                         {
                             association: "Student",
-                            attributes: ["id", "name"]
+                            attributes: ["id", "name", "image"]
                         }
                     },
                     {

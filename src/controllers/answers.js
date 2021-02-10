@@ -27,11 +27,7 @@ module.exports =
                 return res.status(404).send({error:"Pergunta Não encontrada"});
             
             const anwer = await question.createAnswer({answer, student_id: studentId});
-
-
-
-           
-
+            
             res.status(201).send(anwer);
 
         } 
