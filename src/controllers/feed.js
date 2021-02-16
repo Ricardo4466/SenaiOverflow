@@ -5,6 +5,8 @@ module.exports=
 {
     async index (req, res)
     {
+        const limitId = 5;
+        const page = 1;
         try 
         {
             // const answer = req.body.answer
@@ -18,29 +20,27 @@ module.exports=
                 [
                     "id", "title","description", "image", "gist", "created_at"
                 ],
-                include:
-                [
+                include: [
                     {
                         association: "Student",
                         attributes: ["id", "name", "image"]
                     },
                     {
                         association: "Answers",
-                        attributes: ["id", "answer","created_at" ],
-                        include:
-                        {
+                        attributes: ["id", "answer", "created_at"],
+                        include : {
                             association: "Student",
                             attributes: ["id", "name", "image"]
                         }
                     },
                     {
                         association: "Categories",
-                        through:{attributes:[]},
-                        attributes: ["id", "description"]
-                    }
+                        attributes: ["id", "description"],
+                        through: {attributes: []}
+                    },
                 ],
-                order:[["created_at", "DESC"]]
-                
+                order:[["created_at", "DESC"]],
+                subQuery: false
             });
             res.send(feed);
         } 

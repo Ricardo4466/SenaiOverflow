@@ -17,6 +17,8 @@ const questionController = require("./controllers/questions");
 const categoriesController = require("./controllers/categories");
 const StudentImageController = require("./controllers/studentImages");
 const uploadSingleImage = require("./middleware/uploadSingleImage");
+const searchController = require("./controllers/search")
+
 
 const routes = express.Router();
 
@@ -76,9 +78,11 @@ routes.post(
 
 // CONFIGURAÇÃO DA ROTA DO FEED
 routes.get("/feed", feedController.index);
+routes.post("/search", searchController.store);
 
 // ROTAS DE CATEGORIAS
 
 routes.get("/categories", categoriesController.index);
+
 
 module.exports = routes;
