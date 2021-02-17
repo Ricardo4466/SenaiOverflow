@@ -18,7 +18,7 @@ module.exports=
                
                 attributes:
                 [
-                    "id", "title","description", "image", "gist", "created_at"
+                    "id", "title","description", "image", "gist", "created_at", "StudentId",
                 ],
                 include: [
                     {
@@ -40,7 +40,7 @@ module.exports=
                     },
                 ],
                 order:[["created_at", "DESC"]],
-                subQuery: false
+                limit: 5,
             });
             res.send(feed);
         } 
