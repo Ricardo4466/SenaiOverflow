@@ -17,7 +17,6 @@ const questionController = require("./controllers/questions");
 const categoriesController = require("./controllers/categories");
 const StudentImageController = require("./controllers/studentImages");
 const uploadSingleImage = require("./middleware/uploadSingleImage");
-const searchController = require("./controllers/search")
 
 
 const routes = express.Router();
@@ -59,7 +58,8 @@ routes.post(
 );
 
 // CONFIGURAÇÃO DA ROTA DE PERGUNTAS
-routes.get("/questions", questionController.index);
+routes.get("/questions", questionValidator.index , questionController.index);
+
 routes.get("/questions/:id", questionController.find);
 routes.put("/questions/:id", questionController.update);
 routes.delete("/questions/:id", questionController.delete);
@@ -78,7 +78,7 @@ routes.post(
 
 // CONFIGURAÇÃO DA ROTA DO FEED
 routes.get("/feed", feedController.index);
-routes.post("/search", searchController.store);
+
 
 // ROTAS DE CATEGORIAS
 
