@@ -1,7 +1,11 @@
 const express = require("express");
 const { errors } = require("celebrate");
 
-const cors = require("cors")
+const cors = require("cors");
+
+require("dotenv").config();
+
+
 
 require("./database");
 
