@@ -38,9 +38,21 @@ const define = {
   underscored: true,
 };
 
+/** Render, Railway, Neon, etc.: defina DATABASE_SSL=true se o Postgres exigir SSL */
+const useSsl =
+  String(process.env.DATABASE_SSL || "").toLowerCase() === "true";
+
 const postgres = {
   dialect: "postgres",
   define,
+  ...(useSsl && {
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+  }),
 };
 
 const url = buildDatabaseUrl();
