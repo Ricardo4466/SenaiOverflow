@@ -13,26 +13,29 @@ module.exports = {
           email,
         },
       });
-      if (!student || !bcrypt.compareSync(password, student.password))
+      if (
+        !student ||
+        !student.password ||
+        !bcrypt.compareSync(password, student.password)
+      ) {
         return res.status(403).send({ error: "Usuario e/ou senha invalidos" });
+      }
 
       const token = generateToken({
         studentId: student.id,
         studentName: student.name,
       });
 
-      setTimeout(() => {
-        res.status(201).send({
-          student: {
-            studentId: student.id,
-            studentName: student.name,
-            ra: student.ra,
-            email: student.email,
-            image: student.image
-          },
-          token,
-        });
-      }, 3000);
+      res.status(201).send({
+        student: {
+          studentId: student.id,
+          studentName: student.name,
+          ra: student.ra,
+          email: student.email,
+          image: student.image,
+        },
+        token,
+      });
 
     } catch (error) {
       console.log(error);

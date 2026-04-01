@@ -52,21 +52,21 @@ module.exports = {
         password: passwordCript,
       });
 
-      const token = generateToken({studentId: student.id, studentName: student.name, });
+      const token = generateToken({
+        studentId: student.id,
+        studentName: student.name,
+      });
 
-      setTimeout(()=>{
-        res.status(201).send({
-          student: {
-            studentId: student.id,
-            studentName: student.name,
-            ra: student.ra,
-            email: student.email,
-            
-          },
-          token,
-        });
-      },3000);
-      
+      res.status(201).send({
+        student: {
+          studentId: student.id,
+          studentName: student.name,
+          ra: student.ra,
+          email: student.email,
+        },
+        token,
+      });
+
     } catch (error) {
       console.log(error);
       res.status(500).send(error);

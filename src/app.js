@@ -3,7 +3,9 @@ const { errors } = require("celebrate");
 
 const cors = require("cors");
 
-require("dotenv").config();
+require("dotenv").config({
+  override: process.env.NODE_ENV !== "production",
+});
 
 
 

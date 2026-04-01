@@ -13,6 +13,7 @@ const feedController = require("./controllers/feed");
 const answersController = require("./controllers/answers");
 const studentController = require("./controllers/students");
 const sessionController = require("./controllers/sessions");
+const sessionGoogleController = require("./controllers/sessionsGoogle");
 const questionController = require("./controllers/questions");
 const categoriesController = require("./controllers/categories");
 const StudentImageController = require("./controllers/studentImages");
@@ -39,6 +40,7 @@ const routes = express.Router();
 
 // ROTAS PUBLICAS
 routes.post("/sessions", sessionController.store);
+routes.post("/sessions/google", sessionGoogleController.store);
 routes.post("/students", studentValidator.create, studentController.store);
 
 // MIDDLEWARE

@@ -10,6 +10,7 @@ class Student extends Model {
         email: DataTypes.STRING,
         password: DataTypes.STRING,
         image: DataTypes.STRING,
+        google_id: DataTypes.STRING,
       },
 
       {

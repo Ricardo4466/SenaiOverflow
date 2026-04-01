@@ -6,8 +6,10 @@ module.exports = {
     const { page } = req.query;
 
     try {
-
       const totalQuestion = await Question.count();
+
+      const pageNum = Math.max(1, parseInt(page, 10) || 1);
+      const pageSize = 5;
 
       const feed = await Question.findAll({
         attributes: [
@@ -39,15 +41,14 @@ module.exports = {
           },
         ],
         order: [["created_at", "DESC"]],
-        limit: page ? [(page - 1) * 5, 5] : undefined,
+        limit: pageSize,
+        offset: (pageNum - 1) * pageSize,
       });
 
-      res.header("X-Total-Count", totalQuestion);
+      res.header("X-Total-Count", String(totalQuestion));
       res.header("Access-Control-Expose-Headers", "X-Total-Count");
 
-      setTimeout(()=>{
-          res.send(feed);
-      }, 1000);
+      res.send(feed);
 
     } catch (error) {
       console.log(error);

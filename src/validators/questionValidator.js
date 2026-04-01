@@ -14,7 +14,7 @@ module.exports = {
 
       categories: Joi.string().required(),
 
-      gist: Joi.string().min(20).max(255),
+      gist: Joi.string().min(20).max(255).allow(""),
     }),
   }),
 };
